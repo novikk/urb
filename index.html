@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API Challenge</title>
+	
+	<!-- libraries -->	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.7/semantic.min.js"></script>
+	<script src="js/angular-semantic-ui.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+
+	<!-- main app -->
+	<script src="app.js"></script>
+	<script src="js/shortener.js"></script>
+
+	<!-- controllers -->
+	<script src="controllers/indexCtrl.js"></script>
+	<script src="controllers/resultCtrl.js"></script>
+	
+	<!-- LoL data -->
+	<script src="data/champions.js"></script>
+	<script src="data/items.js"></script>
+	
+	<!-- style -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.7/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+</head>
+<body ng-app="apichallenge">
+	<div ui-view></div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<div class="parallaxdiv">
+<div class="ui container">
+	<div class="sharediv">
+		<h1>Share this match!</h1><br />
+		
+		<div class="ui massive input">
+			<input type="text" id="shorturl">
+		</div>
+		<br /><br />
+		<a class="ui button inverted" ui-sref="home">Create another match</a>
+	</div>
+	<div class="ui divider"></div>
+	<center><h1>Team 1</h1></center><br />
+	<div class="ui {{stringTeamSize()}} column centered grid">
+		<div class="column" ng-repeat="champ in team1">
+			<div class="ui centered card" style="background: rgba(0,0,0,0); box-shadow: none">
+				<div class="image">
+					<img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{{champ.id}}_0.jpg">
+				</div>
+				<div class="content" style="background: rgba(0,0,0,0.7)">
+					<div class="header" style="color: white">
+					<center>
+						{{champ.name}}
+					</center>
+					</div>
+					<div class="description">
+						<center>
+						<div class="ui tiny images">
+							<img load-popup data-html="<b>{{item.name}}</b><br />{{item.description}}" class="ui rounded image" ng-repeat="item in champ.items track by $index" src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/{{item.image.full}}">
+						</div>
+						</center>
+					</div><br />
+				<div class="ui bottom inverted button" ng-click="getNewChamp('team1', $index)" style="width: 100%">
+					 We don't have this champ!
+				</div><br />
+				<div class="ui bottom primary button" style="width: 100%; margin-top: 10px" id="downloadButton">
+					 Download item set
+				</div>
+				<iframe id="iframe"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="ui divider"></div>
+	<center><h1>Team 2</h1></center><br />
+	<div class="ui {{stringTeamSize()}} column centered grid">
+		<div class="column" ng-repeat="champ in team2">
+			<div class="ui centered card" style="background: rgba(0,0,0,0); box-shadow: none">
+				<div class="image">
+					<img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/{{champ.id}}_0.jpg">
+				</div>
+				<div class="content" style="background: rgba(0,0,0,0.7)">
+					<div class="header" style="color: white">
+					<center>
+						{{champ.name}}
+					</center>
+					</div>
+					<div class="description">
+						<center>
+						<div class="ui tiny images">
+							<img load-popup data-html="<b>{{item.name}}</b><br />{{item.description}}" class="ui rounded image" ng-repeat="item in champ.items track by $index" src="http://ddragon.leagueoflegends.com/cdn/5.15.1/img/item/{{item.image.full}}">
+						</div>
+						</center>
+					</div><br />
+				<div class="ui bottom inverted button" ng-click="getNewChamp('team2', $index)" style="width: 100%">
+					 We don't have this champ!
+				</div><br />
+				<div class="ui bottom primary button" style="width: 100%; margin-top: 10px">
+					 Download item set
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
