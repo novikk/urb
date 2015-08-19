@@ -21,6 +21,11 @@ apichallenge.config(function($stateProvider, $urlRouterProvider) {
     });*/
 });
 
+apichallenge.config(['$compileProvider',
+function ($compileProvider) {
+   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|data):/);
+}]);
+
 apichallenge.directive('loadPopup', function() {
   return function(scope, element, attrs) {
     angular.element(element).popup();

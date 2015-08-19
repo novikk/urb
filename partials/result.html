@@ -33,10 +33,9 @@
 				<div class="ui bottom inverted button" ng-click="getNewChamp('team1', $index)" style="width: 100%">
 					 We don't have this champ!
 				</div><br />
-				<div class="ui bottom primary button" style="width: 100%; margin-top: 10px" id="downloadButton">
+				<a href="{{createLink('team2', $index)}}" download="{{champ.id}}URB.json" class="ui bottom primary button" style="width: 100%; margin-top: 10px" id="downloadButton">
 					 Download item set
-				</div>
-				<iframe id="iframe"></iframe>
+				</a>
 				</div>
 			</div>
 		</div>
@@ -66,9 +65,9 @@
 				<div class="ui bottom inverted button" ng-click="getNewChamp('team2', $index)" style="width: 100%">
 					 We don't have this champ!
 				</div><br />
-				<div class="ui bottom primary button" style="width: 100%; margin-top: 10px">
+				<a href="{{createLink('team2', $index)}}" download="{{champ.id}}URB.json" class="ui bottom primary button" style="width: 100%; margin-top: 10px" id="downloadButton">
 					 Download item set
-				</div>
+				</a>
 				</div>
 			</div>
 		</div>

@@ -23,7 +23,9 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
     var theChamp = getChampionByKey(champids[i]);
     theChamp.items = [];
     for (var j = 0; j < 6; ++j) {
-      theChamp.items.push(items.data[itemsids[i*6 + j]]);
+      var theItem = items.data[itemsids[i*6+j]];
+      theItem.key = itemsids[i*6+j];
+      theChamp.items.push(theItem);
     }
     $scope.team1.push(theChamp);
   }
@@ -32,7 +34,9 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
     var theChamp = getChampionByKey(champids[i]);
     theChamp.items = [];
     for (var j = 0; j < 6; ++j) {
-      theChamp.items.push(items.data[itemsids[i*6 + j]]);
+      var theItem = items.data[itemsids[i*6+j]];
+      theItem.key = itemsids[i*6+j];
+      theChamp.items.push(theItem);
     }
     $scope.team2.push(theChamp);
   }  
@@ -64,11 +68,64 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
       angular.forEach($scope.team2, function(value, key){
         team2ids.push(value.key);          
       });
-      console.log(team1ids);
       window.history.pushState('newurl', 'New url', '#/game/' + btoa(team1ids.join(",") + "," + team2ids.join(",") + "|" + itemsids));
       makeShort();
   }
-  
+  $scope.createLink = function(team, id) {
+    var itemBlocks = [];
+    var champItems = team[id].items;
+    var coolwords = ["Use this to win","Rito please", "Trust me its good","The URB God","Demaaacia!!","Pls nerf"];
+    coolwords = shuffleArray(coolwords);
+    
+     var blocknameIndex = -1;  
+    angular.forEach($scope[team][id].items, function(value, key){
+      ++ blocknameIndex;
+      var blockname = coolwords[blocknameIndex];
+      if(value.group && value.group.indexOf("Boots") != -1){
+        blockname = "Boots";  
+      }
+      var itemsfrom = [];
+      var finalitem = {
+        "id": value.key,
+        "count": 1 
+      }
+      itemsfrom.push(finalitem);
+      angular.forEach(value.from, function(value, key){
+         var itemfrom = {
+                      "id": value,
+                      "count": 1
+                    }
+        itemsfrom.unshift(itemfrom);
+      })
+      var block = {
+              "type": blockname,
+              "recMath": true,
+              "minSummonerLevel": -1,
+              "maxSummonerLevel": -1,
+              "showIfSummonerSpell": "",
+              "hideIfSummonerSpell": "",
+              "items": itemsfrom
+      }
+      blockname = "URB!!!!";
+      if(value.group && value.group.indexOf("Boots") != -1){
+        itemBlocks.unshift(block); 
+      }
+      else {
+        itemBlocks.push(block);  
+      }
+    });
+    var itemset = {
+      "title": "URB Item set",
+      "type": "custom",
+      "map": "any",
+      "mode": "ARAM",
+      "priority": true,
+      "sortrank": 0,
+      "blocks": itemBlocks
+    }
+    return "data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(itemset));
+  }
+
   $('.wpopup').popup({
     title   : 'Popup Title',
     content : 'Hello I am a popup'
@@ -76,4 +133,14 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
   
   $(".parallaxdiv").parallax({imageSrc: 'http://lolstatic-a.akamaihd.net/site/bilgewater/1d0e96db6bd69523cf508365e1042f93171e3deb/img/act-2/act-2-world-layer-background.jpg'});
   makeShort();
+  
+  function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+  }
 }]);
