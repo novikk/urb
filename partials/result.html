@@ -33,9 +33,9 @@
 				<div class="ui bottom inverted button" ng-click="getNewChamp('team1', $index)" style="width: 100%">
 					 We don't have this champ!
 				</div><br />
-				<a href="{{createLink('team2', $index)}}" download="{{champ.id}}URB.json" class="ui bottom primary button" style="width: 100%; margin-top: 10px" id="downloadButton">
+				<div ng-click="createLink('team1', $index)"class="ui bottom primary button" style="width: 100%; margin-top: 10px" id="downloadButton">
 					 Download item set
-				</a>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -65,12 +65,23 @@
 				<div class="ui bottom inverted button" ng-click="getNewChamp('team2', $index)" style="width: 100%">
 					 We don't have this champ!
 				</div><br />
-				<a href="{{createLink('team2', $index)}}" download="{{champ.id}}URB.json" class="ui bottom primary button" style="width: 100%; margin-top: 10px" id="downloadButton">
+				<div ng-click="showModal('team2', $index)" download="{{champ.id}}URB.json" class="ui bottom primary button" style="width: 100%; margin-top: 10px" id="downloadButton">
 					 Download item set
-				</a>
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+	<div class="ui modal small">
+		<div class="header">How to use the item set</div>
+		<div class="content">
+			<p>1. Download the file.</p>
+			<p class = "pathLine">2. Save the file inside C:League of Legends\Config\Champions\Champname\Recommended\.</p>
+			<p>3. Play a ARAM mode game</p>
+			<div class="actions">
+				<a class="ui approve primary button modalButton" download="{{champ.id}}URB.json">Download now</a>
+			</div>
+  		</div>
+	</div>
 </div>

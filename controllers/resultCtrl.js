@@ -125,6 +125,16 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
     }
     return "data:text/plain;charset=utf-8," + encodeURIComponent(JSON.stringify(itemset));
   }
+  
+  $scope.showModal = function (team, id) {
+    var name = $scope[team][id].id +"URB.json";
+    var path = "2. Save the file inside C:League of Legends\\Config\\Champions\\"+$scope[team][id].id+"\\Recommended\\";
+    console.log(path);  
+    $(".modalButton").attr("href", $scope.createLink(team, id));
+    $(".pathLine").text(path);
+    $(".modalButton").attr("download", name);    
+    $('.modal').modal('show');   
+  };
 
   $('.wpopup').popup({
     title   : 'Popup Title',
