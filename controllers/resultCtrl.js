@@ -24,7 +24,7 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
 
   // attach the items to the champ objects
   for (; i < teamsize; ++i) {
-    var theChamp = getChampionByKey(champids[i]);
+    var theChamp = JSON.parse(JSON.stringify(getChampionByKey(champids[i])));
     theChamp.items = [];
     for (var j = 0; j < 6; ++j) {
       var theItem = items.data[itemsids[i*6+j]];
@@ -35,7 +35,7 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
   }
 
   for (; i < teamsize*2; ++i) {
-    var theChamp = getChampionByKey(champids[i]);
+    var theChamp = JSON.parse(JSON.stringify(getChampionByKey(champids[i])));
     theChamp.items = [];
     for (var j = 0; j < 6; ++j) {
       var theItem = items.data[itemsids[i*6+j]];
@@ -50,9 +50,9 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
       var listOfChamps = Object.keys(champions.data);
 
       var changeTeamIds = [];
-      angular.forEach(team, function(value, key){
-        changeTeamIds.push(value.key);
-      })
+      angular.forEach($scope[team], function(value, key){
+        changeTeamIds.push(value.id);
+      });
 
       // get a random champ and add it to the team
       var rnd = Math.floor(Math.random()*listOfChamps.length);
@@ -61,7 +61,7 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
         rnd = Math.floor(Math.random()*listOfChamps.length);
         champid = listOfChamps[rnd];
       }
-      var champ = champions.data[champid];
+      var champ = JSON.parse(JSON.stringify(champions.data[champid]));
       champ.items = $scope[team][id].items;
       $scope[team][id] = champ;
 
@@ -82,7 +82,6 @@ apichallenge.controller('resultController', ['$scope','$stateParams', function($
   // creates the link to download the item set
   $scope.createLink = function(team, id) {
     var itemBlocks = [];
-    var champItems = team[id].items;
     var coolwords = ["Use this to win","Rito please", "Trust me its good","The URB God","Demaaacia!!","Pls nerf"];
     coolwords = shuffleArray(coolwords);
 
